@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arwa Alaa | Web Engineering Showcase Hub (6 Projects)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --cyan: #06b6d4;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --radius: 18px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
+
+    .ambient {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .amb-1 { top: -100px; left: -50px; background: radial-gradient(circle, #6366f1, #a855f7); }
+    .amb-2 { top: 400px; right: -50px; background: radial-gradient(circle, #06b6d4, #3b82f6); }
+
+    .container {
+      width: 90%;
+      max-width: 1260px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Header */
+    .hub-header {
+      padding: 70px 0 50px;
+      text-align: center;
+    }
+
+    .author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hub-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hub-title span {
+      background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hub-desc {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 740px;
+      margin: 0 auto 30px;
+    }
+
+    .meta-tags {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .meta-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-tag i { color: var(--cyan); }
+
+    /* Hub Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .hub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(14px);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(99, 102, 241, 0.2);
+    }
+
+    .card-media {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .hub-card:hover .card-media img {
+      transform: scale(1.06);
+    }
+
+    .folder-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: monospace;
+      font-size: 0.74rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .folder-pill i { color: #f59e0b; }
+
+    .category-flag {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-body {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-body h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .card-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .feature-bullets {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+
+    .feature-bullets li {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .feature-bullets i {
+      color: #10b981;
+      font-size: 0.75rem;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+
+    .launch-btn:hover {
+      background: linear-gradient(135deg, #4f46e5, #2563eb);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    }
+
+    .source-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer */
+    .hub-footer {
+      text-align: center;
+      padding-top: 60px;
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hub-footer strong { color: #fff; }
+
+    @media (max-width: 768px) {
+      .hub-title { font-size: 2.3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient amb-1"></div>
+  <div class="ambient amb-2"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="hub-header">
+      <div class="author-badge">
+        <i class="fa-solid fa-code"></i> SOFTWARE ENGINEERING SUITE • ARWA ALAA
+      </div>
+      <h1 class="hub-title">Web Projects <span>Portfolio Showcase</span></h1>
+      <p class="hub-desc">
+        A master collection of 6 responsive, modern web applications built with HTML5, CSS3, and modern JavaScript. Designed for high visual impact, performance, and CV presentation.
+      </p>
+
+      <div class="meta-tags">
+        <div class="meta-tag"><i class="fa-solid fa-user-graduate"></i> <strong>Engineer:</strong> Arwa Alaa (20 Years)</div>
+        <div class="meta-tag"><i class="fa-solid fa-building-columns"></i> <strong>University:</strong> Borg El Arab Technological University</div>
+        <div class="meta-tag"><i class="fa-solid fa-cubes"></i> <strong>Total Projects:</strong> 6 Live Suites</div>
+        <div class="meta-tag"><i class="fa-solid fa-code-compare"></i> <strong>Technologies:</strong> Semantic HTML5, CSS3, Vanilla JS</div>
+      </div>
+    </header>
+
+    <!-- 6 Projects Grid -->
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" alt="Velvet & Vogue">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 01-ecommerce-fashion/</span>
+          <span class="category-flag">E-COMMERCE</span>
+        </div>
+        <div class="card-body">
+          <h3>Velvet & Vogue - Luxury Fashion Store</h3>
+          <p>High-end fashion boutique store featuring haute couture garments, Italian leather bags, and sensory fragrances.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Slide-out Cart Drawer with $150 Free Shipping Meter</li>
+            <li><i class="fa-solid fa-check"></i> Filterable product grid (Apparel, Bags, Accessories)</li>
+            <li><i class="fa-solid fa-check"></i> Interactive Quick View Modal with size selectors</li>
+            <li><i class="fa-solid fa-check"></i> Wishlist counter & luxury spotlight capsule section</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> HTML5 • CSS3 • JS</span>
+            <a href="01-ecommerce-fashion/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=80" alt="ApexTech Gadgets">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 02-ecommerce-tech/</span>
+          <span class="category-flag" style="background: #06b6d4; color: #0a0c10;">DARK TECH COMMERCE</span>
+        </div>
+        <div class="card-body">
+          <h3>ApexTech - Next-Gen Electronics & Devices</h3>
+          <p>Cyberpunk dark mode electronics catalog engineered for workstations, audiophile audio, smart wearables, and VR rigs.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Live Flash Deals Countdown Timer (Ticking JS)</li>
+            <li><i class="fa-solid fa-check"></i> Hardware Specs Inspection modal with technical tables</li>
+            <li><i class="fa-solid fa-check"></i> Live keyword search filter and category pills</li>
+            <li><i class="fa-solid fa-check"></i> Interactive cyber cart depot & stock status dots</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> Glassmorphism • ES6</span>
+            <a href="02-ecommerce-tech/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80" alt="Arwa Alaa Portfolio">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 03-portfolio-arwa/</span>
+          <span class="category-flag" style="background: #a855f7;">PERSONAL PORTFOLIO</span>
+        </div>
+        <div class="card-body">
+          <h3>Arwa Alaa - Software Engineer Portfolio</h3>
+          <p>Dedicated personal portfolio tailored for Eng. Arwa Alaa, 20-year-old student at Borg El Arab Technological University.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Dynamic typing headline animation with rotating skillsets</li>
+            <li><i class="fa-solid fa-check"></i> Dedicated, expandable Projects Showcase section</li>
+            <li><i class="fa-solid fa-check"></i> Dark & Light theme toggle switch with persistence</li>
+            <li><i class="fa-solid fa-check"></i> Academic path timeline, skills progress, & contact form</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> Borg El Arab Univ</span>
+            <a href="03-portfolio-arwa/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80" alt="Éclat Beauty Lounge">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 04-beauty-center/</span>
+          <span class="category-flag" style="background: #c5a059;">SPA & BEAUTY LOUNGE</span>
+        </div>
+        <div class="card-body">
+          <h3>Éclat - Luxury Beauty Lounge & Wellness Spa</h3>
+          <p>Serene beauty lounge website offering hair couture, 24K gold HydraFacials, Russian nail sculpting, and VIP bridal suites.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Interactive Appointment Booking Modal with live receipt</li>
+            <li><i class="fa-solid fa-check"></i> Services menu filterable by Hair, Skin, Nails, Massage</li>
+            <li><i class="fa-solid fa-check"></i> Royal Bridal Suite VIP package showcase</li>
+            <li><i class="fa-solid fa-check"></i> Certified specialists roster & Instagram lookbook</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> Booking Modal System</span>
+            <a href="04-beauty-center/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80" alt="PulseTask SaaS Dashboard">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 05-saas-dashboard/</span>
+          <span class="category-flag" style="background: #3b82f6;">CV SHOWCASE 1 • SAAS</span>
+        </div>
+        <div class="card-body">
+          <h3>PulseTask - Cloud Analytics & Task Dashboard</h3>
+          <p>Complex, professional SaaS analytics platform designed to impress recruiters with data architecture, KPI metrics, and sprint tables.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Interactive Task Board: Click status badges to cycle states</li>
+            <li><i class="fa-solid fa-check"></i> Create New Task Modal with real-time backlog updates</li>
+            <li><i class="fa-solid fa-check"></i> Smooth SVG Area Traffic Chart & Database Donut Breakdown</li>
+            <li><i class="fa-solid fa-check"></i> Time-range filter for KPIs, audit logs, & dark/light theme</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> Data Visualization</span>
+            <a href="05-saas-dashboard/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="hub-card">
+        <div class="card-media">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="PrimeNest Real Estate">
+          <span class="folder-pill"><i class="fa-solid fa-folder"></i> 06-real-estate/</span>
+          <span class="category-flag" style="background: #0b1a30; border: 1px solid #c5a059;">CV SHOWCASE 2 • PROPTECH</span>
+        </div>
+        <div class="card-body">
+          <h3>PrimeNest - Smart Real Estate & Property Platform</h3>
+          <p>Modern luxury architectural property portal featuring estates in Borg El Arab, Alexandria Seafront, North Coast, and New Cairo.</p>
+          <ul class="feature-bullets">
+            <li><i class="fa-solid fa-check"></i> Multi-attribute search filter (City, Type, Price, Beds)</li>
+            <li><i class="fa-solid fa-check"></i> Interactive Mortgage Calculator with mathematical loan formula</li>
+            <li><i class="fa-solid fa-check"></i> Property detail & private viewing tour request modal</li>
+            <li><i class="fa-solid fa-check"></i> Neighborhood cards with quick location filtering</li>
+          </ul>
+          <div class="card-footer">
+            <span class="source-tag"><i class="fa-solid fa-file-code"></i> FinTech & Real Estate</span>
+            <a href="06-real-estate/index.html" class="launch-btn">Launch Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="hub-footer">
+      <p>&copy; 2026 Developed with excellence for <strong>Arwa Alaa (أروى علاء)</strong> • Borg El Arab Technological University.</p>
+      <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">All 6 projects are modular, completely responsive, and ready for immediate deployment or GitHub repository upload.</p>
+    </footer>
+  </div>
+</body>
+</html>

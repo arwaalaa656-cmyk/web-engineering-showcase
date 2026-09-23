@@ -1,0 +1,10 @@
+﻿# Ignore subdirectories (they have their own standalone repositories)
+/01-ecommerce-fashion/
+/02-ecommerce-tech/
+/03-portfolio-arwa/
+/04-beauty-center/
+/05-saas-dashboard/
+/06-real-estate/
+.vscode/
+Thumbs.db
+Desktop.ini
